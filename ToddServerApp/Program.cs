@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using ToddServerApp.Components;
 using ToddServerApp.Components.Account;
 using ToddServerApp.Data;
+using ToddServerApp.Data.Interfaces;
+using ToddServerApp.Data.Services;
 
 namespace ToddServerApp
 {
@@ -40,6 +42,7 @@ namespace ToddServerApp
                 .AddDefaultTokenProviders();
 
             builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+            builder.Services.AddScoped<IDataService, MSSQLDataService>();
 
             var app = builder.Build();
 
